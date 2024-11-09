@@ -6,11 +6,7 @@ import { notesRoutes } from './routes/notes'
 const app = new Hono()
 app.use(logger())
 
-
-app.get('/test', (c) => 
-    c.json({ message: 'Test from bun' })
-)
-
-app.route("/api/notes", notesRoutes)
+const apiRoutes = app.basePath("/api").route("/notes", notesRoutes)
 
 export default app
+export type ApiRoutes = typeof apiRoutes
